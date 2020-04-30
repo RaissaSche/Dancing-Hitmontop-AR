@@ -16,23 +16,32 @@ public class ButtonController : MonoBehaviour {
     }*/
 
     public void OnTriggerEnter2D (Collider2D collider2D) {
-        Debug.Log("Pegou nota");
+        //Debug.Log("Pegou nota");
         //storing object in the button area
         onButtonArea = collider2D.gameObject;
     }
 
     public void OnTriggerExit2D (Collider2D collider2D) {
-        Debug.Log("Saiu da área");
+        //Debug.Log("Saiu da área");
         //taking object out of the button area
         onButtonArea = null;
     }
 
     public void IsPressed () {
-        Debug.Log("Pressionou! onButtonArea: " + onButtonArea);
+        //Debug.Log("Pressionou! onButtonArea: " + onButtonArea);
         //checks if object is on button area
         if (onButtonArea) {
             float noteDistance = Vector3.Distance(transform.position, onButtonArea.transform.position);
             Debug.Log("Pegou nota, dist: " + noteDistance);
+            //if (note Distance >= 5){
+                //hit
+            //}
+            //else if (noteDistance > 2 && noteDistance < 5){
+                //good
+            //}
+            //else{
+                //perfect
+            //}
             Destroy (onButtonArea);
         }
         else{
