@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour {
-    public Text debugText;
+    
     private GameObject onButtonArea;
 
     void Start(){
         onButtonArea = null;
     }
 
-    void Update () {
-        debugText.text = "Position: " + transform.position;
-    }
+    /*void Update () {
+        Debug.Log("Position: " + transform.position);
+    }*/
 
     public void OnTriggerEnter2D (Collider2D collider2D) {
         Debug.Log("Pegou nota");
@@ -32,10 +32,11 @@ public class ButtonController : MonoBehaviour {
         //checks if object is on button area
         if (onButtonArea) {
             float noteDistance = Vector3.Distance(transform.position, onButtonArea.transform.position);
-            debugText.text = "Pegou nota, dist: " + noteDistance;
+            Debug.Log("Pegou nota, dist: " + noteDistance);
+            Destroy (onButtonArea);
         }
         else{
-            debugText.text = "deu ruim, sem nota";
+            Debug.Log("deu ruim, sem nota");
         }
     }
 }
