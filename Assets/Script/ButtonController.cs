@@ -17,35 +17,45 @@ public class ButtonController : MonoBehaviour {
 
     public void OnTriggerEnter2D (Collider2D collider2D) {
         //Debug.Log("Pegou nota");
+
         //storing object in the button area
         onButtonArea = collider2D.gameObject;
     }
 
     public void OnTriggerExit2D (Collider2D collider2D) {
         //Debug.Log("Saiu da área");
+
         //taking object out of the button area
         onButtonArea = null;
     }
 
     public void IsPressed () {
         //Debug.Log("Pressionou! onButtonArea: " + onButtonArea);
+
+        float noteDistance = Vector3.Distance(transform.position, onButtonArea.transform.position);
         //checks if object is on button area
         if (onButtonArea) {
-            float noteDistance = Vector3.Distance(transform.position, onButtonArea.transform.position);
             Debug.Log("Pegou nota, dist: " + noteDistance);
-            //if (note Distance >= 5){
+            GameManager.instance.increaseScore();
+            //AQUI vai a implementação de hit/good/perfect/miss
+            //if (note Distance >= 5){ //acertou no limite pra não errar 
                 //hit
             //}
-            //else if (noteDistance > 2 && noteDistance < 5){
+            //else if (noteDistance > 2 && noteDistance < 5){ //acertou bem
                 //good
             //}
-            //else{
+            //else { //chegou bem perto
                 //perfect
             //}
+            //o 'miss' vai no método de baixo
             Destroy (onButtonArea);
         }
         else{
-            Debug.Log("deu ruim, sem nota");
+            Debug.Log("deu ruim, sem nota " + noteDistance);
+            if(noteDistance < -1){
+                GameManager.instance.resetMultiplier();
+                //miss
+            }
         }
     }
 }
