@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    //TODO: PAUSE and EXIT functions
+    //TODO: Make button have/be Pokéballs
+
     public static GameManager instance;
 
     public AudioSource music;
-    public bool startPlaying;
     public BeatScroller beatScroller;
     public GameObject playButton;
 
@@ -25,21 +27,14 @@ public class GameManager : MonoBehaviour {
     void Start () {
         instance = this;
 
-        startPlaying = false;
         currentMultiplier = 1;
         scoreText.text = "Score: 0";
     }
 
-    void Update () {
-        if (startPlaying) {
-            Destroy (playButton);
-            beatScroller.hasStarted = true;
-            music.Play ();
-        }
-    }
-
     public void pressStart () {
-        startPlaying = true;
+        beatScroller.hasStarted = true;
+        music.Play ();
+        Destroy (playButton);
     }
 
     public void increaseScore () {
@@ -58,7 +53,7 @@ public class GameManager : MonoBehaviour {
         scoreText.text = "Score: " + currentScore;
     }
 
-    public void resetMultiplier(){
+    public void resetMultiplier () {
         currentMultiplier = 1;
         multiplierTracker = 0;
 

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+  - Arrow
+  - FeedbackDismisser
   layers:
   - Default
   - TransparentFX
