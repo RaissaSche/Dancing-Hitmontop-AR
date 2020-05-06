@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviour {
     
     private GameObject onButtonArea;
+    public Animator anim;
+    public float _speed = 0;
 
     void Start(){
         onButtonArea = null;
+        anim.SetFloat("Speed", 0.0f);
     }
 
     /*void Update () {
@@ -57,5 +60,23 @@ public class ButtonController : MonoBehaviour {
                 //miss
             }
         }
+    }
+
+    //Animações
+    public void BlueButtonAnim()
+    {
+        anim.SetFloat("Speed", 0.0f);
+    }
+    public void RedButtonAnim()
+    {
+        anim.SetFloat("Speed", 0.33f);
+    }
+    public void YellowButtonAnim()
+    {
+        anim.SetFloat("Speed", 0.66f);
+    }
+    public void GreenButtonAnim()
+    {
+        anim.SetFloat("Speed", 1.0f);
     }
 }
